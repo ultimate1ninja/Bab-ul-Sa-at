@@ -8,438 +8,414 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink:    #1a1612;
-  --paper:  #f5f0e8;
-  --cream:  #ede7d9;
-  --gold:   #b8872a;
-  --gold2:  #d4a843;
-  --muted:  #7a7060;
-  --border: #d8d0c0;
-  --white:  #ffffff;
-  --red:    #c0392b;
+  --bg:      #0a0a0a;
+  --bg2:     #111111;
+  --bg3:     #181818;
+  --surface: #1e1e1e;
+  --border:  #2a2a2a;
+  --border2: #333333;
+  --text:    #f0ebe0;
+  --text2:   #a09880;
+  --text3:   #5a5548;
+  --gold:    #c8983a;
+  --gold2:   #e0b050;
+  --red:     #c0392b;
+  --green:   #27ae60;
+  --white:   #ffffff;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
 
 body {
   font-family: 'DM Sans', sans-serif;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* ── GRAIN TEXTURE overlay ── */
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 9999; opacity: 0.4;
-}
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
 
 /* ── TOP BAR ── */
 .topbar {
-  background: var(--ink);
-  color: #b8a888;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  background: var(--gold);
+  color: #1a1200;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
   text-align: center;
-  padding: 8px;
+  padding: 7px;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
 /* ── HEADER ── */
 header {
   position: sticky; top: 0; z-index: 100;
-  background: var(--paper);
+  background: rgba(10,10,10,0.96);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 3rem;
-  height: 70px;
+  height: 68px;
 }
 
 .logo {
   font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--text);
   letter-spacing: 0.02em;
   text-decoration: none;
   display: flex; flex-direction: column; line-height: 1;
 }
 .logo span {
-  font-size: 0.55rem;
+  font-size: 0.5rem;
   font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  letter-spacing: 0.35em;
+  font-weight: 400;
+  letter-spacing: 0.38em;
   color: var(--gold);
   text-transform: uppercase;
-  margin-top: 3px;
+  margin-top: 4px;
 }
 
-nav {
-  display: flex; gap: 2.5rem; align-items: center;
-}
+nav { display: flex; gap: 2.2rem; align-items: center; }
 nav a {
-  font-size: 0.78rem;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-decoration: none;
+  font-size: 0.75rem; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text2); text-decoration: none;
   transition: color 0.2s;
 }
-nav a:hover, nav a.active { color: var(--ink); }
+nav a:hover, nav a.active { color: var(--gold); }
 
-.header-right {
-  display: flex; align-items: center; gap: 1.2rem;
-}
+.header-right { display: flex; align-items: center; gap: 1rem; }
 
 .search-bar {
   display: flex; align-items: center; gap: 0.5rem;
-  background: var(--cream);
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 2px;
-  padding: 6px 12px;
+  border-radius: 2px; padding: 6px 12px;
+  transition: border-color 0.2s;
 }
+.search-bar:focus-within { border-color: var(--gold); }
 .search-bar input {
   border: none; background: transparent;
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.78rem; color: var(--ink);
-  width: 160px; outline: none;
+  font-size: 0.78rem; color: var(--text);
+  width: 155px; outline: none;
 }
-.search-bar input::placeholder { color: var(--muted); }
+.search-bar input::placeholder { color: var(--text3); }
 
 .cart-btn {
   position: relative;
-  background: var(--ink); color: var(--paper);
+  background: var(--gold); color: #0a0800;
   border: none; cursor: pointer;
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.75rem; font-weight: 500;
-  letter-spacing: 0.1em; text-transform: uppercase;
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
   padding: 8px 18px; border-radius: 2px;
   transition: background 0.2s;
   display: flex; align-items: center; gap: 8px;
 }
-.cart-btn:hover { background: var(--gold); }
+.cart-btn:hover { background: var(--gold2); }
 .cart-count {
-  background: var(--gold2); color: var(--ink);
-  font-size: 0.65rem; font-weight: 700;
-  border-radius: 50%; width: 18px; height: 18px;
-  display: flex; align-items: center; justify-content: center;
-  display: none;
+  background: #0a0800; color: var(--gold);
+  font-size: 0.62rem; font-weight: 700;
+  border-radius: 50%; width: 17px; height: 17px;
+  display: none; align-items: center; justify-content: center;
 }
 .cart-count.has-items { display: flex; }
 
 /* ── HERO ── */
 .hero {
   display: grid; grid-template-columns: 1fr 1fr;
-  min-height: 520px; overflow: hidden;
+  min-height: 500px; overflow: hidden;
+  border-bottom: 1px solid var(--border);
 }
 
 .hero-left {
-  background: var(--ink);
+  background: var(--bg);
   padding: 5rem 4rem;
   display: flex; flex-direction: column; justify-content: center;
   position: relative; overflow: hidden;
 }
-.hero-left::after {
-  content: '1967';
-  position: absolute; right: -1rem; bottom: -3rem;
+.hero-left::before {
+  content: 'TIME';
+  position: absolute; left: -2rem; bottom: -4rem;
   font-family: 'Playfair Display', serif;
-  font-size: 12rem; font-weight: 700;
-  color: rgba(255,255,255,0.03);
+  font-size: 14rem; font-weight: 700;
+  color: rgba(255,255,255,0.02);
   line-height: 1; pointer-events: none; user-select: none;
 }
 
 .hero-eyebrow {
-  font-size: 0.68rem; font-weight: 500;
+  font-size: 0.65rem; font-weight: 500;
   letter-spacing: 0.35em; text-transform: uppercase;
-  color: var(--gold2); margin-bottom: 1.2rem;
+  color: var(--gold); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 8px;
 }
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block; width: 28px; height: 1px;
+  background: var(--gold);
+}
+
 .hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
-  font-weight: 700; line-height: 1.15;
-  color: var(--paper); margin-bottom: 1.2rem;
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  font-weight: 700; line-height: 1.18;
+  color: var(--text); margin-bottom: 1.2rem;
 }
-.hero-title em { font-style: italic; color: var(--gold2); }
+.hero-title em { font-style: italic; color: var(--gold); }
+
 .hero-desc {
-  font-size: 0.9rem; font-weight: 300;
-  color: #8a8070; line-height: 1.7;
-  max-width: 380px; margin-bottom: 2.5rem;
+  font-size: 0.88rem; font-weight: 300;
+  color: var(--text2); line-height: 1.75;
+  max-width: 360px; margin-bottom: 2.2rem;
 }
+
 .hero-cta {
   display: inline-flex; align-items: center; gap: 10px;
-  background: var(--gold);
-  color: var(--white);
-  font-size: 0.78rem; font-weight: 500;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 13px 28px; border: none;
-  cursor: pointer; border-radius: 2px;
+  background: var(--gold); color: #0a0800;
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 13px 26px; border: none; cursor: pointer; border-radius: 2px;
   transition: background 0.2s, transform 0.15s;
-  font-family: 'DM Sans', sans-serif;
-  width: fit-content;
+  font-family: 'DM Sans', sans-serif; width: fit-content;
 }
 .hero-cta:hover { background: var(--gold2); transform: translateY(-1px); }
 .hero-cta svg { transition: transform 0.2s; }
 .hero-cta:hover svg { transform: translateX(3px); }
 
-.hero-stats {
-  display: flex; gap: 2.5rem; margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-.stat-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem; font-weight: 700;
-  color: var(--gold2); line-height: 1;
-}
-.stat-label {
-  font-size: 0.65rem; font-weight: 300;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: #6a6050; margin-top: 4px;
-}
-
 .hero-right {
-  background: var(--cream);
+  background: var(--bg2);
   position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
   padding: 3rem;
+  border-left: 1px solid var(--border);
+}
+.hero-right::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(200,152,58,0.06) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-/* SVG watch illustration in hero */
 .hero-watch-wrap {
-  position: relative;
-  width: 260px; height: 360px;
+  width: 240px; height: 340px;
   display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
 }
-.hero-watch-svg { width: 100%; height: 100%; }
+.hero-watch-wrap svg { width: 100%; height: 100%; filter: drop-shadow(0 20px 40px rgba(200,152,58,0.2)); }
 
-.hero-badge {
-  position: absolute; top: 2rem; right: 2rem;
-  width: 80px; height: 80px;
-  background: var(--gold);
-  border-radius: 50%;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  color: white; text-align: center;
-}
-.hero-badge-top { font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 300; }
-.hero-badge-price { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; }
-.hero-badge-sub { font-size: 0.55rem; color: rgba(255,255,255,0.8); }
-
-/* ── FILTER BAR ── */
-.shop-section { padding: 4rem 3rem; }
+/* ── SHOP SECTION ── */
+.shop-section { padding: 3.5rem 3rem; }
 
 .shop-header {
   display: flex; align-items: flex-end; justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 1.8rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--border);
 }
 .shop-title {
   font-family: 'Playfair Display', serif;
-  font-size: 1.8rem; font-weight: 400;
+  font-size: 1.7rem; font-weight: 400; color: var(--text);
 }
 .shop-title span { font-style: italic; color: var(--gold); }
-.shop-meta { font-size: 0.78rem; color: var(--muted); }
+.shop-meta { font-size: 0.75rem; color: var(--text3); }
 
+/* ── FILTER BAR ── */
 .filter-row {
-  display: flex; gap: 0.5rem; flex-wrap: wrap;
-  margin-bottom: 2.5rem; align-items: center;
+  display: flex; gap: 0.45rem; flex-wrap: wrap;
+  margin-bottom: 2.2rem; align-items: center;
 }
 .filter-label {
-  font-size: 0.68rem; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--muted);
-  margin-right: 0.5rem;
+  font-size: 0.65rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text3);
+  margin-right: 0.4rem;
 }
 .filter-btn {
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.73rem; font-weight: 400;
+  font-size: 0.72rem; font-weight: 400;
   letter-spacing: 0.06em;
   background: transparent;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  padding: 6px 16px; border-radius: 2px;
+  border: 1px solid var(--border2);
+  color: var(--text2); padding: 6px 16px; border-radius: 2px;
   cursor: pointer; transition: all 0.18s;
 }
-.filter-btn:hover { border-color: var(--ink); color: var(--ink); }
-.filter-btn.active {
-  background: var(--ink); border-color: var(--ink);
-  color: var(--paper);
-}
+.filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+.filter-btn.active { background: var(--gold); border-color: var(--gold); color: #0a0800; font-weight: 500; }
 
 .sort-select {
   margin-left: auto;
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.73rem; color: var(--ink);
-  background: var(--cream);
-  border: 1px solid var(--border);
+  font-size: 0.72rem; color: var(--text2);
+  background: var(--surface);
+  border: 1px solid var(--border2);
   padding: 6px 12px; border-radius: 2px;
   cursor: pointer; outline: none;
 }
+.sort-select option { background: var(--surface); }
 
-/* ── PRODUCT GRID ── */
+/* ── PRODUCTS GRID ── */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+  gap: 1.2rem;
 }
 
 .product-card {
-  background: var(--white);
+  background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: 3px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.22s, box-shadow 0.22s;
+  overflow: hidden; cursor: pointer;
+  transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
   position: relative;
 }
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(26,22,18,0.12);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+  border-color: var(--border2);
 }
 
 .product-img {
   position: relative;
-  background: var(--cream);
+  background: var(--bg3);
   aspect-ratio: 1;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
-.product-img svg { width: 68%; height: 68%; }
+.product-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(200,152,58,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.product-img svg { width: 65%; height: 65%; position: relative; z-index: 1; }
 
 .product-badge {
-  position: absolute; top: 12px; left: 12px;
-  font-size: 0.6rem; font-weight: 500;
-  letter-spacing: 0.1em; text-transform: uppercase;
+  position: absolute; top: 10px; left: 10px; z-index: 2;
+  font-size: 0.58rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
   padding: 3px 8px; border-radius: 2px;
 }
-.badge-new { background: var(--ink); color: var(--paper); }
-.badge-sale { background: var(--red); color: white; }
-.badge-hot { background: var(--gold); color: white; }
+.badge-new  { background: var(--gold);  color: #0a0800; }
+.badge-hot  { background: #e05c20;      color: white; }
 
 .product-wishlist {
-  position: absolute; top: 12px; right: 12px;
-  width: 32px; height: 32px;
-  background: white; border: 1px solid var(--border);
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  width: 30px; height: 30px;
+  background: var(--surface); border: 1px solid var(--border2);
   border-radius: 50%; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   opacity: 0; transition: opacity 0.2s;
-  font-size: 0.85rem;
+  font-size: 0.82rem; color: var(--text2);
 }
 .product-card:hover .product-wishlist { opacity: 1; }
-.product-wishlist.liked { opacity: 1; color: var(--red); }
+.product-wishlist.liked { opacity: 1 !important; color: var(--red); border-color: var(--red); }
 
-.product-info { padding: 1.1rem 1.2rem 1.3rem; }
+.product-info { padding: 1rem 1.1rem 1.2rem; }
 
 .product-brand {
-  font-size: 0.62rem; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase;
+  font-size: 0.6rem; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--gold); margin-bottom: 4px;
 }
 .product-name {
   font-family: 'Playfair Display', serif;
-  font-size: 1.05rem; font-weight: 400;
-  color: var(--ink); margin-bottom: 4px;
-  line-height: 1.3;
+  font-size: 1rem; font-weight: 400;
+  color: var(--text); margin-bottom: 3px; line-height: 1.3;
 }
-.product-ref {
-  font-size: 0.65rem; color: var(--muted);
-  letter-spacing: 0.06em; margin-bottom: 12px;
-}
-.product-specs {
-  display: flex; gap: 1rem; margin-bottom: 14px;
-}
-.spec {
-  font-size: 0.65rem; color: var(--muted);
-  display: flex; align-items: center; gap: 4px;
-}
-.spec-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  display: inline-block; flex-shrink: 0;
+.product-ref { font-size: 0.62rem; color: var(--text3); letter-spacing: 0.05em; margin-bottom: 10px; }
+
+.product-tags { display: flex; gap: 5px; margin-bottom: 12px; flex-wrap: wrap; }
+.product-tag {
+  font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase;
+  border: 1px solid var(--border2); color: var(--text3);
+  padding: 2px 7px; border-radius: 2px;
 }
 
 .product-footer {
   display: flex; align-items: center; justify-content: space-between;
-  padding-top: 12px;
-  border-top: 1px solid var(--cream);
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
 }
 .product-price {
   font-family: 'Playfair Display', serif;
-  font-size: 1.2rem; font-weight: 700; color: var(--ink);
+  font-size: 1.15rem; font-weight: 700; color: var(--text);
 }
-.product-price .old-price {
+.product-price .currency {
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.78rem; font-weight: 300;
-  color: var(--muted); text-decoration: line-through;
-  margin-right: 4px;
+  font-size: 0.68rem; font-weight: 400;
+  color: var(--text3); margin-right: 2px;
 }
+
 .add-cart-btn {
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.7rem; font-weight: 500;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  background: var(--ink); color: var(--paper);
-  border: none; padding: 7px 14px; border-radius: 2px;
-  cursor: pointer; transition: background 0.18s;
+  font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  background: transparent; color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 6px 13px; border-radius: 2px;
+  cursor: pointer; transition: all 0.18s;
 }
-.add-cart-btn:hover { background: var(--gold); }
-.add-cart-btn.added { background: #2e7d32; }
+.add-cart-btn:hover { background: var(--gold); color: #0a0800; }
+.add-cart-btn.added { background: var(--green); border-color: var(--green); color: white; }
 
 /* ── TRUST STRIP ── */
 .trust-strip {
-  background: var(--cream);
+  background: var(--bg2);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   display: grid; grid-template-columns: repeat(4, 1fr);
   text-align: center; padding: 2rem 3rem;
-  margin-top: 4rem;
+  margin-top: 3.5rem;
 }
 .trust-item { padding: 0.5rem 1rem; }
 .trust-item + .trust-item { border-left: 1px solid var(--border); }
-.trust-icon { font-size: 1.4rem; margin-bottom: 8px; }
-.trust-title { font-size: 0.78rem; font-weight: 500; margin-bottom: 3px; }
-.trust-desc  { font-size: 0.68rem; color: var(--muted); }
+.trust-icon { font-size: 1.3rem; margin-bottom: 7px; }
+.trust-title { font-size: 0.76rem; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.trust-desc  { font-size: 0.65rem; color: var(--text3); line-height: 1.5; }
 
 /* ── FOOTER ── */
 footer {
-  background: var(--ink); color: #8a8070;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
   padding: 3rem;
   display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 2rem; margin-top: 0;
+  gap: 2rem;
 }
 .footer-brand {
   font-family: 'Playfair Display', serif;
-  font-size: 1.4rem; color: var(--paper);
-  margin-bottom: 0.8rem;
+  font-size: 1.35rem; color: var(--text); margin-bottom: 0.7rem;
 }
-.footer-tagline { font-size: 0.78rem; line-height: 1.7; max-width: 240px; }
+.footer-tagline { font-size: 0.78rem; color: var(--text3); line-height: 1.7; max-width: 230px; }
 .footer-col h4 {
-  font-size: 0.65rem; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase;
+  font-size: 0.62rem; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--gold); margin-bottom: 1rem;
 }
 .footer-col a {
-  display: block; font-size: 0.8rem;
-  color: #8a8070; text-decoration: none;
+  display: block; font-size: 0.78rem;
+  color: var(--text3); text-decoration: none;
   margin-bottom: 0.5rem; transition: color 0.15s;
 }
-.footer-col a:hover { color: var(--paper); }
+.footer-col a:hover { color: var(--text); }
 .footer-bottom {
-  background: #111009;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
   padding: 1rem 3rem;
   display: flex; justify-content: space-between; align-items: center;
-  font-size: 0.65rem; color: #5a5040;
-  letter-spacing: 0.05em;
+  font-size: 0.62rem; color: var(--text3); letter-spacing: 0.05em;
 }
 
 /* ── CART DRAWER ── */
 .cart-overlay {
   position: fixed; inset: 0;
-  background: rgba(26,22,18,0.5);
+  background: rgba(0,0,0,0.7);
   z-index: 200; opacity: 0; pointer-events: none;
   transition: opacity 0.25s;
 }
@@ -447,107 +423,182 @@ footer {
 
 .cart-drawer {
   position: fixed; top: 0; right: 0; bottom: 0;
-  width: 380px; background: var(--paper);
+  width: 370px; background: var(--bg2);
+  border-left: 1px solid var(--border);
   z-index: 201; transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
   display: flex; flex-direction: column;
-  box-shadow: -8px 0 40px rgba(0,0,0,0.2);
+  box-shadow: -12px 0 48px rgba(0,0,0,0.5);
 }
 .cart-drawer.open { transform: translateX(0); }
 
 .cart-header {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1.5rem 1.8rem;
+  padding: 1.4rem 1.6rem;
   border-bottom: 1px solid var(--border);
 }
 .cart-header h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.2rem; font-weight: 400;
+  font-size: 1.1rem; font-weight: 400; color: var(--text);
 }
 .close-cart {
-  background: none; border: none; cursor: pointer;
-  font-size: 1.2rem; color: var(--muted);
-  width: 32px; height: 32px; display: flex;
-  align-items: center; justify-content: center;
+  background: var(--surface); border: 1px solid var(--border);
+  cursor: pointer; font-size: 0.9rem; color: var(--text2);
+  width: 30px; height: 30px; display: flex;
+  align-items: center; justify-content: center; border-radius: 2px;
+  transition: all 0.15s;
 }
-.close-cart:hover { color: var(--ink); }
+.close-cart:hover { background: var(--border2); color: var(--text); }
 
-.cart-items { flex: 1; overflow-y: auto; padding: 1.2rem 1.8rem; }
-
+.cart-items { flex: 1; overflow-y: auto; padding: 1rem 1.6rem; }
 .cart-empty {
   text-align: center; padding: 3rem 1rem;
-  color: var(--muted); font-size: 0.88rem; line-height: 1.8;
+  color: var(--text3); font-size: 0.85rem; line-height: 1.8;
 }
-.cart-empty-icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.4; }
+.cart-empty-icon { font-size: 2.2rem; margin-bottom: 1rem; opacity: 0.35; }
 
 .cart-item {
-  display: flex; gap: 1rem; padding: 1rem 0;
-  border-bottom: 1px solid var(--cream);
-  align-items: flex-start;
+  display: flex; gap: 0.9rem; padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border); align-items: flex-start;
 }
 .cart-item-img {
-  width: 60px; height: 60px; flex-shrink: 0;
-  background: var(--cream); border-radius: 2px;
-  display: flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; flex-shrink: 0;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 2px; display: flex; align-items: center; justify-content: center;
 }
 .cart-item-img svg { width: 80%; height: 80%; }
-.cart-item-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.9rem; margin-bottom: 3px;
-}
-.cart-item-ref { font-size: 0.65rem; color: var(--muted); margin-bottom: 6px; }
-.cart-item-price { font-size: 0.88rem; font-weight: 500; color: var(--gold); }
+.cart-item-name { font-family: 'Playfair Display', serif; font-size: 0.88rem; color: var(--text); margin-bottom: 2px; }
+.cart-item-ref { font-size: 0.62rem; color: var(--text3); margin-bottom: 5px; }
+.cart-item-price { font-size: 0.85rem; font-weight: 500; color: var(--gold); }
 .cart-item-remove {
   margin-left: auto; background: none; border: none;
-  color: var(--muted); cursor: pointer; font-size: 1rem;
-  flex-shrink: 0;
+  color: var(--text3); cursor: pointer; font-size: 0.9rem; flex-shrink: 0;
+  transition: color 0.15s;
 }
 .cart-item-remove:hover { color: var(--red); }
 
 .cart-footer {
-  padding: 1.5rem 1.8rem;
+  padding: 1.3rem 1.6rem;
   border-top: 1px solid var(--border);
-  background: var(--cream);
+  background: var(--bg3);
 }
 .cart-total {
   display: flex; justify-content: space-between; align-items: center;
   margin-bottom: 1rem;
 }
-.cart-total-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.cart-total-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text3); }
 .cart-total-price {
   font-family: 'Playfair Display', serif;
-  font-size: 1.4rem; font-weight: 700;
+  font-size: 1.35rem; font-weight: 700; color: var(--text);
 }
 .checkout-btn {
   width: 100%; font-family: 'DM Sans', sans-serif;
-  font-size: 0.82rem; font-weight: 500;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  background: var(--ink); color: var(--paper);
-  border: none; padding: 14px; border-radius: 2px;
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  background: #25D366; color: #fff;
+  border: none; padding: 13px; border-radius: 2px;
   cursor: pointer; transition: background 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
 }
-.checkout-btn:hover { background: var(--gold); }
+.checkout-btn:hover { background: #1ebe5a; }
+
+/* ── CUSTOMER FORM ── */
+.customer-form {
+  padding: 1rem 1.6rem 0;
+  border-top: 1px solid var(--border);
+  display: none;
+}
+.customer-form.visible { display: block; }
+.form-title {
+  font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.9rem;
+}
+.form-group { margin-bottom: 0.7rem; }
+.form-group label {
+  display: block; font-size: 0.65rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 4px;
+}
+.form-group input, .form-group textarea {
+  width: 100%; background: var(--surface);
+  border: 1px solid var(--border2); color: var(--text);
+  font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
+  padding: 8px 10px; border-radius: 2px; outline: none;
+  transition: border-color 0.18s;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--text3); }
+.form-group textarea { resize: none; height: 56px; }
+.form-error { font-size: 0.65rem; color: #e05050; margin-top: 3px; display: none; }
+.form-error.show { display: block; }
+
+/* ── FLOATING WHATSAPP BUTTON ── */
+.wa-float {
+  position: fixed; bottom: 2rem; right: 2rem;
+  z-index: 90;
+  width: 52px; height: 52px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  cursor: pointer; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: waPulse 2.5s ease-in-out infinite;
+}
+.wa-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+  animation: none;
+}
+.wa-float svg { width: 26px; height: 26px; }
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+  50%       { box-shadow: 0 4px 28px rgba(37,211,102,0.7); }
+}
+.wa-tooltip {
+  position: fixed; bottom: 2.8rem; right: 5rem;
+  z-index: 90;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border2);
+  font-size: 0.7rem; letter-spacing: 0.05em;
+  padding: 6px 12px; border-radius: 2px;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s;
+}
+.wa-float:hover ~ .wa-tooltip { opacity: 1; }
 
 /* ── TOAST ── */
 .toast {
   position: fixed; bottom: 2rem; left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  background: var(--ink); color: var(--paper);
-  font-size: 0.78rem; font-weight: 400;
-  letter-spacing: 0.06em; padding: 10px 20px;
-  border-radius: 2px; z-index: 300;
-  opacity: 0; transition: all 0.3s;
-  white-space: nowrap;
+  transform: translateX(-50%) translateY(12px);
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border2);
+  font-size: 0.75rem; letter-spacing: 0.05em;
+  padding: 9px 18px; border-radius: 2px;
+  z-index: 300; opacity: 0;
+  transition: all 0.28s; white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+/* ── EMPTY STATE ── */
+.empty-state {
+  grid-column: 1/-1; text-align: center;
+  padding: 5rem 1rem; color: var(--text3);
+}
+.empty-state-icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.3; }
+.empty-state p { font-size: 0.88rem; line-height: 1.7; }
+
 /* ── RESPONSIVE ── */
-@media (max-width: 900px) {
+@media (max-width: 920px) {
   header { padding: 0 1.5rem; }
   nav { display: none; }
   .hero { grid-template-columns: 1fr; }
   .hero-right { display: none; }
-  .shop-section { padding: 3rem 1.5rem; }
+  .shop-section { padding: 2.5rem 1.5rem; }
   .trust-strip { grid-template-columns: 1fr 1fr; }
   .trust-item:nth-child(3) { border-left: none; }
   footer { grid-template-columns: 1fr 1fr; }
@@ -556,34 +607,32 @@ footer {
   .cart-drawer { width: 100%; }
   .trust-strip { grid-template-columns: 1fr; }
   .trust-item + .trust-item { border-left: none; border-top: 1px solid var(--border); }
+  footer { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- Top announcement bar -->
-<div class="topbar">✦ Free delivery on orders over PKR 5,000 · Authentic timepieces since 1967 · Cash on delivery available ✦</div>
+<div class="topbar">✦ Cash on delivery available · Free delivery on orders above PKR 5,000 ✦</div>
 
-<!-- Header -->
 <header>
   <a href="#" class="logo">
     Bab ul Sa'at
-    <span>Est. 1967 · Karachi</span>
+    <span>Karachi · Wrist Watches</span>
   </a>
   <nav>
     <a href="#" class="active">Shop</a>
-    <a href="#">Collections</a>
     <a href="#">Brands</a>
     <a href="#">About</a>
     <a href="#">Contact</a>
   </nav>
   <div class="header-right">
     <div class="search-bar">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#5a5548"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input type="text" placeholder="Search watches…" id="searchInput">
     </div>
     <button class="cart-btn" onclick="openCart()">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       Bag
       <span class="cart-count" id="cartCount">0</span>
     </button>
@@ -593,104 +642,82 @@ footer {
 <!-- Hero -->
 <section class="hero">
   <div class="hero-left">
-    <p class="hero-eyebrow">New Arrivals — Spring 2025</p>
-    <h1 class="hero-title">Time wears<br><em>its finest</em><br>here.</h1>
-    <p class="hero-desc">Pakistan's most trusted watch retailer for over 50 years. From everyday wear to collector's pieces — all genuine, all guaranteed.</p>
+    <p class="hero-eyebrow">New Arrivals — 2025</p>
+    <h1 class="hero-title">Every wrist<br>deserves a<br><em>great watch.</em></h1>
+    <p class="hero-desc">Browse our full collection of genuine timepieces — for men, women, couples, and smart wear. All authentic, all ready to ship.</p>
     <button class="hero-cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
-      Browse All Watches
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Shop All Watches
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">500+</div>
-        <div class="stat-label">Models in stock</div>
-      </div>
-      <div>
-        <div class="stat-num">57yr</div>
-        <div class="stat-label">In business</div>
-      </div>
-      <div>
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Authentic</div>
-      </div>
-    </div>
   </div>
   <div class="hero-right">
-    <div class="hero-badge">
-      <div class="hero-badge-top">from</div>
-      <div class="hero-badge-price">PKR 4k</div>
-      <div class="hero-badge-sub">free delivery</div>
-    </div>
-    <!-- Large SVG watch in hero -->
     <div class="hero-watch-wrap">
-      <svg class="hero-watch-svg" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Strap top -->
-        <rect x="76" y="0" width="48" height="80" rx="6" fill="#2a1e14"/>
-        <rect x="82" y="8" width="36" height="4" rx="2" fill="#3a2e22"/>
-        <rect x="82" y="16" width="36" height="4" rx="2" fill="#3a2e22"/>
-        <rect x="82" y="24" width="24" height="4" rx="2" fill="#3a2e22"/>
-        <!-- Case -->
-        <circle cx="100" cy="160" r="62" fill="#e8e8e8"/>
-        <circle cx="100" cy="160" r="62" fill="url(#caseGrad)"/>
-        <!-- Bezel -->
-        <circle cx="100" cy="160" r="65" fill="none" stroke="url(#goldGrad)" stroke-width="6"/>
-        <!-- Dial -->
-        <circle cx="100" cy="160" r="54" fill="#1a2535"/>
-        <!-- Hour markers -->
-        <g stroke="#c8a450" stroke-width="2.5" stroke-linecap="round">
-          <line x1="100" y1="112" x2="100" y2="120"/>
-          <line x1="128" y1="119" x2="124" y2="126"/>
-          <line x1="148" y1="140" x2="142" y2="143"/>
-          <line x1="153" y1="160" x2="145" y2="160"/>
-          <line x1="148" y1="180" x2="142" y2="177"/>
-          <line x1="128" y1="201" x2="124" y2="194"/>
-          <line x1="100" y1="208" x2="100" y2="200"/>
-          <line x1="72" y1="201" x2="76" y2="194"/>
-          <line x1="52" y1="180" x2="58" y2="177"/>
-          <line x1="47" y1="160" x2="55" y2="160"/>
-          <line x1="52" y1="140" x2="58" y2="143"/>
-          <line x1="72" y1="119" x2="76" y2="126"/>
+      <svg viewBox="0 0 200 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- strap top -->
+        <rect x="76" y="2" width="48" height="76" rx="7" fill="#1a1a1a"/>
+        <rect x="83" y="10" width="34" height="3.5" rx="1.5" fill="#282828"/>
+        <rect x="83" y="18" width="34" height="3.5" rx="1.5" fill="#282828"/>
+        <rect x="83" y="26" width="22" height="3.5" rx="1.5" fill="#282828"/>
+        <!-- case outer shadow -->
+        <circle cx="100" cy="158" r="66" fill="#0a0a0a"/>
+        <!-- bezel -->
+        <circle cx="100" cy="158" r="64" fill="none" stroke="url(#bezelG)" stroke-width="7"/>
+        <!-- case -->
+        <circle cx="100" cy="158" r="60" fill="#161616"/>
+        <!-- dial -->
+        <circle cx="100" cy="158" r="53" fill="#0c0c12"/>
+        <!-- hour markers -->
+        <g fill="#c8983a">
+          <rect x="96.5" y="109" width="7" height="13" rx="1.5"/>
+          <rect x="96.5" y="194" width="7" height="13" rx="1.5"/>
+          <rect x="140" y="154.5" width="13" height="7" rx="1.5"/>
+          <rect x="47" y="154.5" width="13" height="7" rx="1.5"/>
         </g>
-        <!-- Large markers at 12,3,6,9 -->
-        <g fill="#c8a450">
-          <rect x="96" y="110" width="8" height="14" rx="1"/>
-          <rect x="141" y="156" width="14" height="8" rx="1"/>
-          <rect x="96" y="196" width="8" height="14" rx="1"/>
-          <rect x="45" y="156" width="14" height="8" rx="1"/>
+        <!-- minute markers -->
+        <g stroke="#333340" stroke-width="1.5" stroke-linecap="round">
+          <line x1="100" y1="107" x2="100" y2="112"/>
+          <line x1="125" y1="113" x2="122" y2="118"/>
+          <line x1="144" y1="133" x2="140" y2="136"/>
+          <line x1="153" y1="158" x2="148" y2="158"/>
+          <line x1="144" y1="183" x2="140" y2="180"/>
+          <line x1="125" y1="203" x2="122" y2="198"/>
+          <line x1="75" y1="113" x2="78" y2="118"/>
+          <line x1="56" y1="133" x2="60" y2="136"/>
+          <line x1="47" y1="158" x2="52" y2="158"/>
+          <line x1="56" y1="183" x2="60" y2="180"/>
+          <line x1="75" y1="203" x2="78" y2="198"/>
         </g>
-        <!-- Brand text on dial -->
-        <text x="100" y="148" text-anchor="middle" font-family="serif" font-size="7" fill="#a8988a" letter-spacing="2">AUTOMATIC</text>
-        <text x="100" y="175" text-anchor="middle" font-family="serif" font-size="5.5" fill="#7a7060" letter-spacing="1">SWISS MOVEMENT</text>
-        <!-- Hour hand -->
-        <g transform="rotate(25, 100, 160)">
-          <rect x="97.5" y="130" width="5" height="34" rx="2.5" fill="#f0e0b8"/>
+        <!-- brand text -->
+        <text x="100" y="147" text-anchor="middle" font-family="serif" font-size="7" fill="#6a6458" letter-spacing="2.5">BUL SA'AT</text>
+        <text x="100" y="172" text-anchor="middle" font-family="sans-serif" font-size="5" fill="#3a3830" letter-spacing="1.5">AUTOMATIC</text>
+        <!-- hour hand -->
+        <g transform="rotate(-35, 100, 158)">
+          <rect x="97.5" y="128" width="5" height="34" rx="2.5" fill="#e8d8b0"/>
+          <rect x="98.5" y="155" width="3" height="14" rx="1.5" fill="#c8a840"/>
         </g>
-        <!-- Minute hand -->
-        <g transform="rotate(140, 100, 160)">
-          <rect x="98.5" y="118" width="3" height="46" rx="1.5" fill="#f0e0b8"/>
+        <!-- minute hand -->
+        <g transform="rotate(110, 100, 158)">
+          <rect x="98.8" y="114" width="2.5" height="48" rx="1.2" fill="#e8d8b0"/>
         </g>
-        <!-- Second hand -->
-        <g transform="rotate(240, 100, 160)">
-          <rect x="99.5" y="122" width="1" height="42" rx="0.5" fill="#c0392b"/>
+        <!-- second hand -->
+        <g transform="rotate(200, 100, 158)">
+          <line x1="100" y1="118" x2="100" y2="178" stroke="#e03020" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="100" cy="182" r="3" fill="#e03020"/>
         </g>
-        <!-- Center pip -->
-        <circle cx="100" cy="160" r="4" fill="#c8a450"/>
-        <circle cx="100" cy="160" r="2" fill="#1a2535"/>
-        <!-- Crown -->
-        <rect x="162" y="155" width="10" height="10" rx="2" fill="#c8a450"/>
-        <!-- Strap bottom -->
-        <rect x="76" y="240" width="48" height="80" rx="6" fill="#2a1e14"/>
-        <rect x="82" y="260" width="36" height="4" rx="2" fill="#3a2e22"/>
-        <rect x="82" y="272" width="36" height="4" rx="2" fill="#3a2e22"/>
+        <!-- center -->
+        <circle cx="100" cy="158" r="4.5" fill="#c8983a"/>
+        <circle cx="100" cy="158" r="2" fill="#0c0c12"/>
+        <!-- crown -->
+        <rect x="161" y="153" width="10" height="10" rx="2.5" fill="#c8983a"/>
+        <!-- strap bottom -->
+        <rect x="76" y="236" width="48" height="74" rx="7" fill="#1a1a1a"/>
+        <rect x="83" y="252" width="34" height="3.5" rx="1.5" fill="#282828"/>
+        <rect x="83" y="262" width="34" height="3.5" rx="1.5" fill="#282828"/>
         <defs>
-          <linearGradient id="caseGrad" x1="60" y1="100" x2="140" y2="220">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.2"/>
-            <stop offset="100%" stop-color="#000000" stop-opacity="0.1"/>
-          </linearGradient>
-          <linearGradient id="goldGrad" x1="0" y1="0" x2="200" y2="320">
-            <stop offset="0%" stop-color="#e8c870"/>
-            <stop offset="50%" stop-color="#c8a040"/>
-            <stop offset="100%" stop-color="#a07828"/>
+          <linearGradient id="bezelG" x1="40" y1="94" x2="160" y2="222">
+            <stop offset="0%" stop-color="#e8c060"/>
+            <stop offset="40%" stop-color="#c8983a"/>
+            <stop offset="100%" stop-color="#7a5c1a"/>
           </linearGradient>
         </defs>
       </svg>
@@ -698,27 +725,27 @@ footer {
   </div>
 </section>
 
-<!-- Shop Section -->
+<!-- Shop -->
 <section class="shop-section" id="shop">
   <div class="shop-header">
     <div>
       <h2 class="shop-title">Our <span>Collection</span></h2>
-      <p class="shop-meta" id="productCount">Showing all watches</p>
+      <p class="shop-meta" id="productCount">Loading…</p>
     </div>
   </div>
 
   <div class="filter-row">
-    <span class="filter-label">Filter:</span>
-    <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
-    <button class="filter-btn" onclick="filterProducts('casual', this)">Casual</button>
-    <button class="filter-btn" onclick="filterProducts('dress', this)">Dress</button>
-    <button class="filter-btn" onclick="filterProducts('sport', this)">Sport</button>
-    <button class="filter-btn" onclick="filterProducts('digital', this)">Digital</button>
-    <button class="filter-btn" onclick="filterProducts('luxury', this)">Luxury</button>
-    <select class="sort-select" onchange="sortProducts(this.value)">
+    <span class="filter-label">Category:</span>
+    <button class="filter-btn active" data-cat="all"    onclick="filterProducts('all',this)">All</button>
+    <button class="filter-btn"        data-cat="male"   onclick="filterProducts('male',this)">Male</button>
+    <button class="filter-btn"        data-cat="female" onclick="filterProducts('female',this)">Female</button>
+    <button class="filter-btn"        data-cat="unisex" onclick="filterProducts('unisex',this)">Unisex</button>
+    <button class="filter-btn"        data-cat="couple" onclick="filterProducts('couple',this)">Couple</button>
+    <button class="filter-btn"        data-cat="smart"  onclick="filterProducts('smart',this)">Smart</button>
+    <select class="sort-select" onchange="sortProducts(this.value)" id="sortSelect">
       <option value="default">Sort: Featured</option>
-      <option value="price-asc">Price: Low to High</option>
-      <option value="price-desc">Price: High to Low</option>
+      <option value="price-asc">Price: Low → High</option>
+      <option value="price-desc">Price: High → Low</option>
       <option value="name">Name A–Z</option>
     </select>
   </div>
@@ -736,7 +763,7 @@ footer {
   <div class="trust-item">
     <div class="trust-icon">✅</div>
     <div class="trust-title">100% Authentic</div>
-    <div class="trust-desc">Every watch comes with authenticity guarantee</div>
+    <div class="trust-desc">Every watch is verified genuine</div>
   </div>
   <div class="trust-item">
     <div class="trust-icon">🔄</div>
@@ -744,9 +771,9 @@ footer {
     <div class="trust-desc">7-day hassle-free return policy</div>
   </div>
   <div class="trust-item">
-    <div class="trust-icon">🏆</div>
-    <div class="trust-title">Since 1967</div>
-    <div class="trust-desc">Trusted by generations of watch lovers</div>
+    <div class="trust-icon">💬</div>
+    <div class="trust-title">WhatsApp Support</div>
+    <div class="trust-desc">Get help before & after your order</div>
   </div>
 </div>
 
@@ -754,28 +781,28 @@ footer {
 <footer>
   <div>
     <div class="footer-brand">Bab ul Sa'at</div>
-    <p class="footer-tagline">Karachi's most trusted watch retailer since 1967. Curating the finest timepieces for every wrist and every budget.</p>
+    <p class="footer-tagline">Your go-to destination for genuine wrist watches in Karachi. Every budget, every style.</p>
   </div>
   <div class="footer-col">
     <h4>Shop</h4>
-    <a href="#">New Arrivals</a>
-    <a href="#">Casual Watches</a>
-    <a href="#">Dress Watches</a>
-    <a href="#">Sport Watches</a>
-    <a href="#">Luxury Pieces</a>
+    <a href="#">Male Watches</a>
+    <a href="#">Female Watches</a>
+    <a href="#">Unisex Watches</a>
+    <a href="#">Couple Sets</a>
+    <a href="#">Smart Watches</a>
   </div>
   <div class="footer-col">
     <h4>Help</h4>
-    <a href="#">Size Guide</a>
-    <a href="#">Care Instructions</a>
     <a href="#">Returns Policy</a>
     <a href="#">Authenticity</a>
+    <a href="#">Care Guide</a>
+    <a href="#">Size Guide</a>
   </div>
   <div class="footer-col">
     <h4>Contact</h4>
     <a href="#">WhatsApp Us</a>
-    <a href="#">Call: 021-XXXXXXX</a>
-    <a href="#">Shop Location</a>
+    <a href="#">Call Us</a>
+    <a href="#">Find Our Shop</a>
     <a href="#">Instagram</a>
   </div>
 </footer>
@@ -791,212 +818,340 @@ footer {
     <h2>Your Bag</h2>
     <button class="close-cart" onclick="closeCart()">✕</button>
   </div>
-  <div class="cart-items" id="cartItems">
-    <div class="cart-empty">
-      <div class="cart-empty-icon">🕐</div>
-      <p>Your bag is empty.<br>Find your perfect timepiece.</p>
+  <div class="cart-items" id="cartItems"></div>
+  <!-- Customer details form (shown when cart has items) -->
+  <div class="customer-form" id="customerForm">
+    <div class="form-title">Your Details</div>
+    <div class="form-group">
+      <label>Full Name *</label>
+      <input type="text" id="custName" placeholder="e.g. Ahmed Khan">
+      <div class="form-error" id="errName">Please enter your name</div>
+    </div>
+    <div class="form-group">
+      <label>Phone Number *</label>
+      <input type="tel" id="custPhone" placeholder="e.g. 0300-1234567">
+      <div class="form-error" id="errPhone">Please enter your phone number</div>
+    </div>
+    <div class="form-group">
+      <label>Delivery Address *</label>
+      <textarea id="custAddress" placeholder="House/flat, street, area, city"></textarea>
+      <div class="form-error" id="errAddress">Please enter your address</div>
+    </div>
+    <div class="form-group">
+      <label>Note (optional)</label>
+      <input type="text" id="custNote" placeholder="Any special instructions…">
     </div>
   </div>
+
   <div class="cart-footer">
     <div class="cart-total">
       <span class="cart-total-label">Total</span>
       <span class="cart-total-price" id="cartTotal">PKR 0</span>
     </div>
-    <button class="checkout-btn">Proceed to Checkout →</button>
+    <button class="checkout-btn" id="checkoutBtn" onclick="handleCheckout()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L0 24l6.335-1.508A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.681-.513-5.21-1.408l-.374-.222-3.862.919.978-3.768-.244-.389A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Order via WhatsApp
+    </button>
   </div>
 </div>
 
-<!-- Toast notification -->
+<!-- Floating WhatsApp button -->
+<a class="wa-float" id="waFloat" href="#" onclick="openWhatsApp(event)" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L0 24l6.335-1.508A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.681-.513-5.21-1.408l-.374-.222-3.862.919.978-3.768-.244-.389A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+<div class="wa-tooltip">Chat with us on WhatsApp</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-// ── Watch SVG generator (creates unique faces per watch)
-function watchSVG(faceColor, dialColor, handColor, markerColor, small){
-  var s = small ? 80 : 160;
-  var cx = s, cy = s, r = s * 0.72, bezelR = s * 0.76, dialR = s * 0.62;
-  return `<svg viewBox="0 0 ${s*2} ${s*2.6}" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="${s*0.56}" y="0" width="${s*0.88}" height="${s*0.65}" rx="${s*0.07}" fill="${faceColor}" opacity="0.9"/>
-    <circle cx="${cx}" cy="${cy+s*0.2}" r="${bezelR}" fill="${faceColor}"/>
-    <circle cx="${cx}" cy="${cy+s*0.2}" r="${bezelR}" fill="none" stroke="${markerColor}" stroke-width="${s*0.06}"/>
-    <circle cx="${cx}" cy="${cy+s*0.2}" r="${dialR}" fill="${dialColor}"/>
-    <rect x="${cx-s*0.04}" y="${cx+s*0.2-dialR+s*0.04}" width="${s*0.08}" height="${s*0.16}" rx="${s*0.02}" fill="${markerColor}"/>
-    <rect x="${cx+dialR-s*0.2}" y="${cy+s*0.2-s*0.04}" width="${s*0.16}" height="${s*0.08}" rx="${s*0.02}" fill="${markerColor}"/>
-    <rect x="${cx-s*0.04}" y="${cy+s*0.2+dialR-s*0.2}" width="${s*0.08}" height="${s*0.16}" rx="${s*0.02}" fill="${markerColor}"/>
-    <rect x="${cx-dialR+s*0.04}" y="${cy+s*0.2-s*0.04}" width="${s*0.16}" height="${s*0.08}" rx="${s*0.02}" fill="${markerColor}"/>
-    <line x1="${cx}" y1="${cy+s*0.2}" x2="${cx}" y2="${cy+s*0.2-dialR*0.75}" stroke="${handColor}" stroke-width="${s*0.035}" stroke-linecap="round"/>
-    <line x1="${cx}" y1="${cy+s*0.2}" x2="${cx+dialR*0.6}" y2="${cy+s*0.2+dialR*0.25}" stroke="${handColor}" stroke-width="${s*0.025}" stroke-linecap="round"/>
-    <circle cx="${cx}" cy="${cy+s*0.2}" r="${s*0.05}" fill="${markerColor}"/>
-    <rect x="${s*0.56}" y="${s*2}" width="${s*0.88}" height="${s*0.6}" rx="${s*0.07}" fill="${faceColor}" opacity="0.9"/>
-  </svg>`;
+/* ── Watch SVG generator ── */
+function makeWatchSVG(opts) {
+  var fc = opts.face   || '#0c0c12';
+  var dc = opts.dial   || '#0c0c12';
+  var hc = opts.hand   || '#e8d8b0';
+  var mc = opts.mark   || '#c8983a';
+  var sc = opts.second || '#e03020';
+  var sz = opts.small  ? 80 : 160;
+  var cx = sz, cy = sz + sz * 0.05;
+  var bezelR = sz * 0.76, dialR = sz * 0.62, mR = sz * 0.52;
+
+  return '<svg viewBox="0 0 ' + (sz*2) + ' ' + (sz*2.6) + '" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+    '<rect x="' + (sz*0.56) + '" y="2" width="' + (sz*0.88) + '" height="' + (sz*0.64) + '" rx="' + (sz*0.07) + '" fill="' + fc + '"/>' +
+    '<circle cx="' + cx + '" cy="' + cy + '" r="' + (bezelR+2) + '" fill="#0a0a0a"/>' +
+    '<circle cx="' + cx + '" cy="' + cy + '" r="' + bezelR + '" fill="none" stroke="' + mc + '" stroke-width="' + (sz*0.055) + '"/>' +
+    '<circle cx="' + cx + '" cy="' + cy + '" r="' + (bezelR-sz*0.06) + '" fill="' + dc + '"/>' +
+    // 4 main markers
+    '<rect x="' + (cx - sz*0.04) + '" y="' + (cy - mR - sz*0.01) + '" width="' + (sz*0.08) + '" height="' + (sz*0.14) + '" rx="' + (sz*0.02) + '" fill="' + mc + '"/>' +
+    '<rect x="' + (cx + mR - sz*0.13) + '" y="' + (cy - sz*0.04) + '" width="' + (sz*0.14) + '" height="' + (sz*0.08) + '" rx="' + (sz*0.02) + '" fill="' + mc + '"/>' +
+    '<rect x="' + (cx - sz*0.04) + '" y="' + (cy + mR - sz*0.13) + '" width="' + (sz*0.08) + '" height="' + (sz*0.14) + '" rx="' + (sz*0.02) + '" fill="' + mc + '"/>' +
+    '<rect x="' + (cx - mR - sz*0.01) + '" y="' + (cy - sz*0.04) + '" width="' + (sz*0.14) + '" height="' + (sz*0.08) + '" rx="' + (sz*0.02) + '" fill="' + mc + '"/>' +
+    // hour hand
+    '<g transform="rotate(' + (opts.hourAngle||'-30') + ', ' + cx + ', ' + cy + ')">' +
+      '<rect x="' + (cx - sz*0.025) + '" y="' + (cy - mR*0.85) + '" width="' + (sz*0.05) + '" height="' + (mR*0.85 + sz*0.07) + '" rx="' + (sz*0.025) + '" fill="' + hc + '"/>' +
+    '</g>' +
+    // minute hand
+    '<g transform="rotate(' + (opts.minAngle||'110') + ', ' + cx + ', ' + cy + ')">' +
+      '<rect x="' + (cx - sz*0.016) + '" y="' + (cy - mR*0.97) + '" width="' + (sz*0.032) + '" height="' + (mR*0.97 + sz*0.05) + '" rx="' + (sz*0.016) + '" fill="' + hc + '"/>' +
+    '</g>' +
+    // center
+    '<circle cx="' + cx + '" cy="' + cy + '" r="' + (sz*0.05) + '" fill="' + mc + '"/>' +
+    '<circle cx="' + cx + '" cy="' + cy + '" r="' + (sz*0.025) + '" fill="' + dc + '"/>' +
+    // strap bottom
+    '<rect x="' + (sz*0.56) + '" y="' + (cy + bezelR + sz*0.04) + '" width="' + (sz*0.88) + '" height="' + (sz*0.6) + '" rx="' + (sz*0.07) + '" fill="' + fc + '"/>' +
+  '</svg>';
 }
 
-// ── Product data
+/* ── Product data ── */
 var allProducts = [
-  { id:1,  name:'Heritage Automatic', brand:'Orient', ref:'RA-AC0F06Y', price:18500, category:'dress',   badge:'hot',  faceC:'#1a2535', dialC:'#1a2535', handC:'#f0e0b8', markC:'#c8a450', desc:'40mm · Leather · 50m WR' },
-  { id:2,  name:'Submariner Homage',  brand:'Steelfast', ref:'SF-200-BLK', price:12800, oldPrice:15000, category:'sport',  badge:'sale', faceC:'#111', dialC:'#0a1520', handC:'#ffffff', markC:'#e8c870', desc:'42mm · Steel · 200m WR' },
-  { id:3,  name:'Classic Date',       brand:'Citizen',   ref:'BI5010-59A', price:8900,  category:'casual', badge:'new',  faceC:'#c8b89a', dialC:'#f5eedd', handC:'#2a1e14', markC:'#8a7050', desc:'38mm · Steel · Date display' },
-  { id:4,  name:'Royal Oak Homage',   brand:'Pakwatch',  ref:'PW-ROH-01',  price:34900, category:'luxury', badge:null,   faceC:'#7a8890', dialC:'#606870', handC:'#e8e8e8', markC:'#c0c8d0', desc:'41mm · IPG Steel · Tapisserie dial' },
-  { id:5,  name:'Solar Chronograph',  brand:'Casio',     ref:'EFS-S570DC', price:22000, category:'sport',  badge:'new',  faceC:'#1e1e1e', dialC:'#141414', handC:'#f0f0f0', markC:'#e8c020', desc:'44mm · Solar · 100m WR' },
-  { id:6,  name:'Slim Dress',         brand:'Tissot',    ref:'T058.210',   price:28500, category:'dress',  badge:null,   faceC:'#e8e0d4', dialC:'#f5f0e8', handC:'#2a2220', markC:'#c8a040', desc:'36mm · Sapphire crystal' },
-  { id:7,  name:'G-Shock 6900',       brand:'Casio',     ref:'DW-6900-1',  price:7500,  category:'digital',badge:null,   faceC:'#1a1a1a', dialC:'#0a0a0a', handC:'#60ff60', markC:'#40dd40', desc:'Digital · Shock resist · 200m WR' },
-  { id:8,  name:'Moonphase',          brand:'Seagull',   ref:'819.23',     price:45000, oldPrice:52000, category:'luxury',badge:'sale', faceC:'#0a0e1a', dialC:'#060a14', handC:'#c8b080', markC:'#a89060', desc:'42mm · Manual wind · Moon phase' },
-  { id:9,  name:'Field Watch',        brand:'Timex',     ref:'TW2R37500',  price:5200,  category:'casual', badge:null,   faceC:'#3a4a2a', dialC:'#2e3e22', handC:'#f0e8d0', markC:'#d0c890', desc:'38mm · Indiglo · Canvas strap' },
-  { id:10, name:'Dive Master 300',    brand:'Invicta',   ref:'Pro Diver 8926', price:9800, category:'sport',badge:'hot', faceC:'#0a0e2a', dialC:'#060a1e', handC:'#f0f0f0', markC:'#e8c020', desc:'40mm · NH35A · 300m WR' },
-  { id:11, name:'Aviation Chrono',    brand:'Orient',    ref:'RA-KV0005Y', price:26000, category:'dress',  badge:null,   faceC:'#1a1a1a', dialC:'#111111', handC:'#e8e8e8', markC:'#c8a450', desc:'42mm · Pilot style · Chronograph' },
-  { id:12, name:'Lady Rose',          brand:'Citizen',   ref:'EW2586-58D', price:16800, category:'casual', badge:'new',  faceC:'#f0d8e0', dialC:'#f8ecf4', handC:'#8a4860', markC:'#c880a0', desc:'28mm · Eco-Drive · Rose gold-tone' },
+  // MALE
+  { id:1,  name:'Heritage Automatic',   brand:'Orient',   ref:'RA-AC0F06Y',   price:18500, cat:'male',   badge:'new',  face:'#1a2535', dial:'#1a2535', hand:'#f0e0b8', mark:'#c8a450', desc:'40mm · Automatic · Leather strap', ha:-30, ma:110 },
+  { id:2,  name:'Submariner Pro',        brand:'Steelfast',ref:'SF-200-BLK',   price:12800, cat:'male',   badge:null,   face:'#111111', dial:'#0a1520', hand:'#ffffff', mark:'#e8c040', desc:'42mm · 200m WR · Steel bracelet', ha:45,  ma:-60  },
+  { id:3,  name:'Aviation Pilot',        brand:'Orient',   ref:'RA-KV0005Y',   price:26000, cat:'male',   badge:'hot',  face:'#141414', dial:'#111111', hand:'#e8e8e8', mark:'#c8a450', desc:'42mm · Pilot · Chronograph', ha:160, ma:30  },
+  { id:4,  name:'Dive Master 300',       brand:'Invicta',  ref:'Pro Diver 8926',price:9800, cat:'male',   badge:null,   face:'#0a0e2a', dial:'#060a1e', hand:'#f0f0f0', mark:'#e8c020', desc:'40mm · NH35A · 300m WR', ha:-80, ma:200  },
+  // FEMALE
+  { id:5,  name:'Lady Rose',             brand:'Citizen',  ref:'EW2586-58D',   price:16800, cat:'female', badge:'new',  face:'#2a1420', dial:'#1e0e18', hand:'#f8d0e0', mark:'#e090b8', desc:'28mm · Eco-Drive · Rose gold', ha:20,  ma:-40  },
+  { id:6,  name:'Petite Elegance',       brand:'Tissot',   ref:'T058.009.11',  price:24500, cat:'female', badge:null,   face:'#0e0e0e', dial:'#0a0a0a', hand:'#f0e8d0', mark:'#d4a0c0', desc:'26mm · Sapphire crystal · Mesh', ha:70,  ma:150  },
+  { id:7,  name:'Floral Dial',           brand:'Seiko',    ref:'SUR347P1',     price:8900,  cat:'female', badge:'new',  face:'#1a0e1a', dial:'#140c14', hand:'#f0d0e8', mark:'#c890c8', desc:'28mm · Hardlex crystal · Date', ha:-120, ma:60  },
+  // UNISEX
+  { id:8,  name:'Classic Date',          brand:'Citizen',  ref:'BI5010-59A',   price:8900,  cat:'unisex', badge:null,   face:'#1e1e1e', dial:'#181818', hand:'#e8e0d0', mark:'#a09070', desc:'38mm · Steel · Date display', ha:30,  ma:-90  },
+  { id:9,  name:'Field Watch',           brand:'Timex',    ref:'TW2R37500',    price:5200,  cat:'unisex', badge:null,   face:'#1a2010', dial:'#141a0c', hand:'#f0e8d0', mark:'#c8c070', desc:'38mm · Indiglo · Canvas strap', ha:130, ma:40  },
+  { id:10, name:'Slim Minimalist',       brand:'Seiko',    ref:'SGEH77',       price:14200, cat:'unisex', badge:'new',  face:'#111111', dial:'#0e0e0e', hand:'#e0e0e0', mark:'#c0c0c0', desc:'40mm · Quartz · Dress style', ha:-60, ma:170  },
+  // COUPLE
+  { id:11, name:'Duo Classic Set',       brand:'Pakwatch', ref:'PW-DUO-01',    price:22000, cat:'couple', badge:'new',  face:'#1a1a1a', dial:'#141414', hand:'#e8d8b0', mark:'#c8983a', desc:'His 40mm + Her 32mm · Matching', ha:10,  ma:-30  },
+  { id:12, name:'Rose Gold Pair',        brand:'Citizen',  ref:'BM7252+EX1482',price:38000, cat:'couple', badge:'hot',  face:'#1e0e10', dial:'#180c0e', hand:'#f0d0c0', mark:'#d4906a', desc:'Matched pair · Rose gold-tone', ha:-50, ma:120  },
+  // SMART
+  { id:13, name:'Smart Band Pro',        brand:'Xiaomi',   ref:'Mi Band 8',    price:6500,  cat:'smart',  badge:'new',  face:'#0a0a0a', dial:'#000000', hand:'#00e0ff', mark:'#00b8d4', desc:'AMOLED · Heart rate · 14-day battery', ha:0, ma:0  },
+  { id:14, name:'Fit Watch Active',      brand:'Huawei',   ref:'Band 8',       price:12000, cat:'smart',  badge:null,   face:'#0c0c10', dial:'#080810', hand:'#60a0ff', mark:'#4080e0', desc:'SpO2 · GPS · Sleep tracking', ha:0, ma:0  },
+  { id:15, name:'Smart Classic',         brand:'Samsung',  ref:'Galaxy Watch6',price:45000, cat:'smart',  badge:'hot',  face:'#101010', dial:'#0c0c0c', hand:'#e0e8ff', mark:'#8090d0', desc:'AMOLED · WearOS · LTE', ha:0, ma:0  },
 ];
 
 var cart = [];
-var filteredProducts = allProducts.slice();
 var currentFilter = 'all';
+var currentSort   = 'default';
+var wishlist = {};
 
-// ── Render products
-function renderProducts(products){
+function getFiltered() {
+  var list = currentFilter === 'all'
+    ? allProducts.slice()
+    : allProducts.filter(function(p){ return p.cat === currentFilter; });
+  var q = document.getElementById('searchInput').value.toLowerCase().trim();
+  if (q) list = list.filter(function(p){
+    return (p.name+p.brand+p.ref+p.cat).toLowerCase().includes(q);
+  });
+  if (currentSort === 'price-asc')  list.sort(function(a,b){ return a.price-b.price; });
+  if (currentSort === 'price-desc') list.sort(function(a,b){ return b.price-a.price; });
+  if (currentSort === 'name')       list.sort(function(a,b){ return a.name.localeCompare(b.name); });
+  return list;
+}
+
+function renderProducts() {
+  var list = getFiltered();
   var grid = document.getElementById('productsGrid');
-  var count = document.getElementById('productCount');
-  count.textContent = 'Showing ' + products.length + ' watches';
-  if(products.length === 0){
-    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:4rem;color:var(--muted)"><div style="font-size:2rem;margin-bottom:1rem">🕐</div><p>No watches found. Try a different filter.</p></div>';
+  var meta = document.getElementById('productCount');
+  meta.textContent = list.length + ' watch' + (list.length !== 1 ? 'es' : '') + ' found';
+
+  if (!list.length) {
+    grid.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🔍</div><p>No watches found.<br>Try a different category or search term.</p></div>';
     return;
   }
-  grid.innerHTML = products.map(function(p){
-    var badge = p.badge ? '<span class="product-badge badge-'+p.badge+'">'+p.badge.toUpperCase()+'</span>' : '';
-    var oldP  = p.oldPrice ? '<span class="old-price">PKR '+p.oldPrice.toLocaleString()+'</span>' : '';
-    return `
-    <div class="product-card" id="card-${p.id}">
-      <div class="product-img">
-        ${badge}
-        <button class="product-wishlist" id="wish-${p.id}" onclick="toggleWish(event,${p.id})">♡</button>
-        ${watchSVG(p.faceC, p.dialC, p.handC, p.markC, false)}
-      </div>
-      <div class="product-info">
-        <div class="product-brand">${p.brand}</div>
-        <div class="product-name">${p.name}</div>
-        <div class="product-ref">Ref. ${p.ref}</div>
-        <div class="product-specs">
-          <span class="spec">
-            <span class="spec-dot" style="background:${p.faceC}"></span>
-            ${p.desc.split('·')[0].trim()}
-          </span>
-          <span class="spec">${p.desc.split('·').slice(1).join('·')}</span>
-        </div>
-        <div class="product-footer">
-          <div class="product-price">${oldP}PKR ${p.price.toLocaleString()}</div>
-          <button class="add-cart-btn" id="btn-${p.id}" onclick="addToCart(event,${p.id})">Add to Bag</button>
-        </div>
-      </div>
-    </div>`;
+
+  grid.innerHTML = list.map(function(p) {
+    var badge = p.badge
+      ? '<span class="product-badge badge-'+p.badge+'">'+p.badge.toUpperCase()+'</span>'
+      : '';
+    var wished = wishlist[p.id];
+    var svgSmall = makeWatchSVG({face:p.face,dial:p.dial,hand:p.hand,mark:p.mark,hourAngle:p.ha,minAngle:p.ma,small:true});
+    var svgLarge = makeWatchSVG({face:p.face,dial:p.dial,hand:p.hand,mark:p.mark,hourAngle:p.ha,minAngle:p.ma,small:false});
+    return [
+      '<div class="product-card">',
+        '<div class="product-img">',
+          badge,
+          '<button class="product-wishlist'+(wished?' liked':''),'" ',
+            'id="wish-'+p.id+'" ',
+            'onclick="toggleWish(event,'+p.id+')" ',
+            'title="Wishlist">',
+            wished ? '♥' : '♡',
+          '</button>',
+          svgLarge,
+        '</div>',
+        '<div class="product-info">',
+          '<div class="product-brand">'+p.brand+'</div>',
+          '<div class="product-name">'+p.name+'</div>',
+          '<div class="product-ref">Ref. '+p.ref+'</div>',
+          '<div class="product-tags">',
+            '<span class="product-tag">'+p.cat+'</span>',
+            p.desc.split('·').slice(0,2).map(function(t){
+              return '<span class="product-tag">'+t.trim()+'</span>';
+            }).join(''),
+          '</div>',
+          '<div class="product-footer">',
+            '<div class="product-price"><span class="currency">PKR</span>'+p.price.toLocaleString()+'</div>',
+            '<button class="add-cart-btn" id="btn-'+p.id+'" onclick="addToCart(event,'+p.id+')">Add to Bag</button>',
+          '</div>',
+        '</div>',
+      '</div>'
+    ].join('');
   }).join('');
 }
 
-// ── Filter
-function filterProducts(cat, btn){
+function filterProducts(cat, btn) {
   currentFilter = cat;
   document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
   btn.classList.add('active');
-  var f = cat === 'all' ? allProducts : allProducts.filter(function(p){ return p.category === cat; });
-  filteredProducts = f;
-  renderProducts(f);
+  renderProducts();
 }
 
-// ── Sort
-function sortProducts(val){
-  var arr = filteredProducts.slice();
-  if(val === 'price-asc')  arr.sort(function(a,b){ return a.price-b.price; });
-  if(val === 'price-desc') arr.sort(function(a,b){ return b.price-a.price; });
-  if(val === 'name')       arr.sort(function(a,b){ return a.name.localeCompare(b.name); });
-  renderProducts(arr);
+function sortProducts(val) {
+  currentSort = val;
+  renderProducts();
 }
 
-// ── Search
-document.getElementById('searchInput').addEventListener('input', function(){
-  var q = this.value.toLowerCase().trim();
-  if(!q){ renderProducts(filteredProducts); return; }
-  renderProducts(filteredProducts.filter(function(p){
-    return p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || p.ref.toLowerCase().includes(q);
-  }));
-});
-
-// ── Cart
-function addToCart(e, id){
+function addToCart(e, id) {
   e.stopPropagation();
-  var p = allProducts.find(function(x){ return x.id===id; });
-  var existing = cart.find(function(x){ return x.id===id; });
-  if(existing){ existing.qty++; } else { cart.push({id:p.id,name:p.name,brand:p.brand,ref:p.ref,price:p.price,faceC:p.faceC,dialC:p.dialC,handC:p.handC,markC:p.markC,qty:1}); }
+  var p = allProducts.find(function(x){ return x.id === id; });
+  var ex = cart.find(function(x){ return x.id === id; });
+  if (ex) { ex.qty++; } else { cart.push({ id:p.id, name:p.name, brand:p.brand, ref:p.ref, price:p.price, face:p.face, dial:p.dial, hand:p.hand, mark:p.mark, ha:p.ha, ma:p.ma, qty:1 }); }
   var btn = document.getElementById('btn-'+id);
-  btn.textContent = 'Added ✓';
-  btn.classList.add('added');
-  setTimeout(function(){ btn.textContent='Add to Bag'; btn.classList.remove('added'); }, 1500);
+  if (btn) { btn.textContent = 'Added ✓'; btn.classList.add('added'); setTimeout(function(){ btn.textContent='Add to Bag'; btn.classList.remove('added'); }, 1500); }
   updateCartUI();
   showToast(p.brand + ' ' + p.name + ' added to bag');
 }
 
-function removeFromCart(id){
-  cart = cart.filter(function(x){ return x.id!==id; });
+function removeFromCart(id) {
+  cart = cart.filter(function(x){ return x.id !== id; });
   updateCartUI();
   renderCartItems();
 }
 
-function updateCartUI(){
-  var total = cart.reduce(function(s,x){ return s+x.price*x.qty; }, 0);
-  var count = cart.reduce(function(s,x){ return s+x.qty; }, 0);
-  var countEl = document.getElementById('cartCount');
-  countEl.textContent = count;
-  countEl.classList.toggle('has-items', count>0);
+/* ── CONFIG: replace with your real WhatsApp number (international format, no + or spaces) ── */
+var WA_NUMBER = '923001234567'; // e.g. Pakistan: 92 then number without leading 0
+
+/* ── Show/hide customer form based on cart ── */
+function updateCartUI() {
+  var total = cart.reduce(function(s,x){ return s + x.price * x.qty; }, 0);
+  var count = cart.reduce(function(s,x){ return s + x.qty; }, 0);
+  var el = document.getElementById('cartCount');
+  el.textContent = count;
+  el.classList.toggle('has-items', count > 0);
   document.getElementById('cartTotal').textContent = 'PKR ' + total.toLocaleString();
+  // show form only when there are items
+  var form = document.getElementById('customerForm');
+  if (form) form.classList.toggle('visible', count > 0);
 }
 
-function renderCartItems(){
+function renderCartItems() {
   var el = document.getElementById('cartItems');
-  if(cart.length === 0){
-    el.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🕐</div><p>Your bag is empty.<br>Find your perfect timepiece.</p></div>';
+  if (!cart.length) {
+    el.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">⌚</div><p>Your bag is empty.<br>Find your perfect watch.</p></div>';
     return;
   }
-  el.innerHTML = cart.map(function(item){
-    return `<div class="cart-item">
-      <div class="cart-item-img">${watchSVG(item.faceC,item.dialC,item.handC,item.markC,true)}</div>
-      <div style="flex:1">
-        <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-ref">${item.brand} · ${item.ref}</div>
-        <div class="cart-item-price">PKR ${item.price.toLocaleString()} ${item.qty>1?'× '+item.qty:''}</div>
-      </div>
-      <button class="cart-item-remove" onclick="removeFromCart(${item.id})">✕</button>
-    </div>`;
+  el.innerHTML = cart.map(function(item) {
+    var svg = makeWatchSVG({face:item.face,dial:item.dial,hand:item.hand,mark:item.mark,hourAngle:item.ha,minAngle:item.ma,small:true});
+    return [
+      '<div class="cart-item">',
+        '<div class="cart-item-img">'+svg+'</div>',
+        '<div style="flex:1;min-width:0">',
+          '<div class="cart-item-name">'+item.name+'</div>',
+          '<div class="cart-item-ref">'+item.brand+' · '+item.ref+'</div>',
+          '<div class="cart-item-price">PKR '+item.price.toLocaleString()+(item.qty>1?' × '+item.qty:'')+'</div>',
+        '</div>',
+        '<button class="cart-item-remove" onclick="removeFromCart('+item.id+')" title="Remove">✕</button>',
+      '</div>'
+    ].join('');
   }).join('');
 }
 
-function openCart(){ 
+function openCart() {
   renderCartItems();
   document.getElementById('cartOverlay').classList.add('open');
   document.getElementById('cartDrawer').classList.add('open');
 }
-function closeCart(){
+function closeCart() {
   document.getElementById('cartOverlay').classList.remove('open');
   document.getElementById('cartDrawer').classList.remove('open');
 }
 
-// ── Wishlist
-var wishlist = {};
-function toggleWish(e, id){
+function toggleWish(e, id) {
   e.stopPropagation();
   wishlist[id] = !wishlist[id];
   var btn = document.getElementById('wish-'+id);
-  btn.textContent = wishlist[id] ? '♥' : '♡';
-  btn.classList.toggle('liked', wishlist[id]);
-  showToast(wishlist[id] ? 'Added to wishlist' : 'Removed from wishlist');
+  if (btn) { btn.textContent = wishlist[id] ? '♥' : '♡'; btn.classList.toggle('liked', wishlist[id]); }
+  showToast(wishlist[id] ? 'Added to wishlist ♥' : 'Removed from wishlist');
 }
 
-// ── Toast
-function showToast(msg){
+function showToast(msg) {
   var t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2200);
+  clearTimeout(window._tt);
+  window._tt = setTimeout(function(){ t.classList.remove('show'); }, 2200);
 }
 
-// ── Init
-renderProducts(allProducts);
+/* ── WhatsApp checkout ── */
+function handleCheckout() {
+  if (!cart.length) { showToast('Your bag is empty!'); return; }
+
+  // validate form
+  var name    = document.getElementById('custName').value.trim();
+  var phone   = document.getElementById('custPhone').value.trim();
+  var address = document.getElementById('custAddress').value.trim();
+  var note    = document.getElementById('custNote').value.trim();
+  var ok = true;
+
+  function setErr(id, errId, show) {
+    document.getElementById(errId).classList.toggle('show', show);
+    document.getElementById(id).style.borderColor = show ? '#e05050' : '';
+    if (show) ok = false;
+  }
+  setErr('custName',    'errName',    !name);
+  setErr('custPhone',   'errPhone',   !phone);
+  setErr('custAddress', 'errAddress', !address);
+  if (!ok) { showToast('Please fill in your details first'); return; }
+
+  // build message
+  var total = cart.reduce(function(s,x){ return s + x.price * x.qty; }, 0);
+  var lines = [];
+  lines.push('🛍 *New Order — Bab ul Sa\'at*');
+  lines.push('');
+  lines.push('*Order Details:*');
+  cart.forEach(function(item, i) {
+    lines.push((i+1) + '. ' + item.brand + ' ' + item.name);
+    lines.push('   Ref: ' + item.ref);
+    lines.push('   Price: PKR ' + item.price.toLocaleString() + (item.qty > 1 ? ' × ' + item.qty : ''));
+  });
+  lines.push('');
+  lines.push('*Total: PKR ' + total.toLocaleString() + '*');
+  lines.push('');
+  lines.push('*Customer Details:*');
+  lines.push('Name: ' + name);
+  lines.push('Phone: ' + phone);
+  lines.push('Address: ' + address);
+  if (note) lines.push('Note: ' + note);
+  lines.push('');
+  lines.push('_Payment: Cash on Delivery_');
+
+  var msg = lines.join('\n');
+  var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+  window.open(url, '_blank');
+  showToast('Opening WhatsApp… ✓');
+}
+
+/* ── Floating WhatsApp button (general enquiry) ── */
+function openWhatsApp(e) {
+  e.preventDefault();
+  var msg = 'Hello! I\'d like to enquire about watches at Bab ul Sa\'at.';
+  var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+  window.open(url, '_blank');
+}
+
+document.getElementById('searchInput').addEventListener('input', function(){ renderProducts(); });
+
+// Init
+renderProducts();
+updateCartUI();
 </script>
 </body>
 </html>
